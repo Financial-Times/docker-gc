@@ -15,7 +15,8 @@ RUN apk --update add bash curl \
   && rm -rf /var/cache/apk/*
 
 COPY ./docker-gc /docker-gc
+COPY ./image-cleaner-loop.sh /image-cleaner-loop.sh
 
 VOLUME /var/lib/docker-gc
 
-CMD ["/docker-gc"]
+CMD ["/image-cleaner-loop.sh"]
