@@ -1,5 +1,6 @@
 # docker-gc
 
+* [Running in a Kubernetes Cluster](#running-in-a-kubernetes-cluster)
 * [Building](#building)
 * [Installing](#installing)
 * [Usage](#usage)
@@ -23,6 +24,20 @@ still on disk.
 
 This script is intended to be run as a cron job, but you can also run it as a Docker
 container (see [below](#running-as-a-docker-container)).
+
+## Running in a Kubernetes Cluster
+
+This application would be perfect for a cron job which runs on every node, but we don't have 
+that feature yet in K8S, so we'll run it as a DaemonSet with the docker-gc script wrapped in 
+a loop. The Time between runs can be configured with the `TIME_BETWEEN_RUNS` environment var.
+
+Examples:
+```
+TIME_BETWEEN_RUNS=5s #for 5 seconds
+TIME_BETWEEN_RUNS=5m #for 5 minutes
+TIME_BETWEEN_RUNS=5h #for 5 hours
+TIME_BETWEEN_RUNS=5d #for 5 days
+```
 
 ## Building the Debian Package
 
